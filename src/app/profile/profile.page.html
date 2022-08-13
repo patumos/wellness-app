@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" color="light">ปิด</ion-button>
+    </ion-buttons>
+    <div class="hcs">
+      <img src="/assets/images/wellnessbar.svg" height="50" />    
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+     <div *ngIf="(user2 | async) as user; else loading"> 
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center">
+          <h1>ข้อมูลสมาชิก</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="card">
+          <div class="header">
+            <div class="avatar">
+              <!-- <img [src]="$any(user).picture_large.data.url" *ngIf="user['picture_large'] != undefined" /> -->
+              <!-- <img src="/assets/images/icon-user.png" *ngIf="user['picture_large'] == undefined" /> -->
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="user-meta ion-text-center">
+            <h3 class="playername">{{ $any(user).name }}</h3> 
+          </div>
+          <form>
+            <ion-item lines="full">
+              <ion-label>ชื่อ</ion-label>
+              {{ $any(user).name }}
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label>อีเมล์</ion-label>
+              {{ $any(user).email }}
+            </ion-item>
+            <div class="ion-padding-vertical">
+               <ion-button type="submit" color="danger" expand="block" (click)="logout()">Log Out</ion-button>
+            </div>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+    </div>
+    <ng-template #loading>
+    Loading stuff...
+  </ng-template> 
+  </ion-grid>
+</ion-content>

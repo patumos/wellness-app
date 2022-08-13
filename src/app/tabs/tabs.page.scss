@@ -1,0 +1,35 @@
+ion-label {
+    font-family: "IBM Plex Sans Thai", sans-serif !important;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+ion-tab-bar {
+    height: 70px;
+  }
+  
+// ion-tab-bar {
+//     bottom: 20px;
+//     position: relative;
+//     border-radius: 16px;
+//     width: 92%;
+//     margin: 0 auto;
+//   }
+  
+//   ion-tab-button {
+//     --color: var(--ion-color-medium);
+//     --color-selected: var(--ion-color-primary);
+  
+//     &::before {
+//       background-color: transparent;
+//       display: block;
+//       content: "";
+//       margin: 0 auto;
+//       width: 20px;
+//       height: 2px;
+//     }
+  
+//     &.tab-selected::before {
+//       background-color: var(--ion-color-primary);
+//     }
+//   }

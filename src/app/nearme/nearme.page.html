@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" color="light">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="hcs">
+      <img src="/assets/images/wellnessbar.svg" height="50" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div #nearmap id="nearmap"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card *ngFor="let pldata of stores">
+          <div *ngIf="pldata['fields']['feature_image']">
+            <a [routerLink]="['/tabs/place/', pldata['pk']]">
+              <img src="{{  pldata['fields']['feature_image'] | imageServer }}" />
+            </a>
+          </div>
+          <ion-card-header>
+            <a [routerLink]="['/tabs/place/', pldata['pk']]">
+              <!--
+                <ion-card-title [innerHTML]="pldata.title.rendered"></ion-card-title> -->
+              <ion-card-title>{{ pldata['fields']['name'] }}</ion-card-title>
+            </a>
+            <a [routerLink]="['/tabs/province/']">
+              <!--
+                <span [innerHTML]="pldata._embedded['wp:term'][1][0].name"></span> -->
+              <span>{{ pldata['fields']['province'] }}</span>
+
+            </a> /
+            <a [routerLink]="['/tabs/place/']">
+
+              <span>{{ pldata['fields']['store_cat'] }}</span>
+            </a>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

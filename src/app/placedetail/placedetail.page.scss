@@ -1,0 +1,80 @@
+.bg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 60vh;
+  .holidaycard {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    min-height: 60%;
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    background: white;
+    --background: white;
+  }
+}
+
+.white {
+  color: #ffffff;
+}
+.asd .country {
+  position: absolute;
+  top: 50px;
+  width: 140px;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  color: white;
+}
+
+#map_canvas {
+  width: 90%;
+  height: 80%;
+  border: 1px solid red;
+}
+
+#address {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#map {
+  width: 100%;
+  height: 20vh;
+}
+
+.map-wrapper {
+  position: relative;
+
+  #map_center {
+    position: absolute;
+    z-index: 99;
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    margin-left: -21px;
+    margin-top: -41px;
+  }
+}
+
+// ion-segment {
+//   --background:#ffc409;
+// }
+ion-segment-button {
+  --indicator-box-shadow: transparent !important;
+  // --background:white;
+  // --color:#2d2e87;
+  // --background-checked: linear-gradient(to right, #2d2e87, #0083CB)!important;
+  // --color-checked: rgb(160, 205, 216);
+  border-radius: .5rem !important;
+  padding: 2px;
+  margin: 0;
+}
+
+.button-blue {
+  color: #3880ff;
+}

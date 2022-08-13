@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <div class="hcs">
+      <img src="/assets/images/wellnessbar.svg" height="50" />    
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div><img src="/assets/images/image-005.jpg"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center">
+          <h1>เข้าสู่ระบบ</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <form>
+          <ion-item lines="full">
+            <ion-label position="floating">อีเมล์</ion-label>
+            <ion-input type="text" required="true" [(ngModel)]='registerForm.email' name='email' type='email'>
+            </ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label position="floating">รหัสผ่าน</ion-label>
+            <ion-input type="password" required [(ngModel)]='registerForm.password' name='password'></ion-input>
+          </ion-item>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="success" expand="block" (click)="userLogin()">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class='ion-text-center'>
+        <a (click)="openForgotPassword()" class="small-text">ลืมรหัส</a>
+      </ion-col>
+      <ion-col class='ion-text-center'>
+        <a (click)="openRegister()" class="small-text">สมัครใหม่</a>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <span class="divider line one-line">หรือ</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="log-fb-in-button" expand="block" (click)="doFbLogin()">
+          Log in with Facebook
+        </ion-button><br>
+        <button (click)="appleSignIn()" block [hidden]="isAndroid">
+          <img src="assets/images/appleid_button@2x.png">
+        </button>
+      </ion-col>
+    </ion-row>
+    <!--
+    <ion-col>
+      <a [routerLink]="['/tabs/forgot-password']">
+        page ลืมรหัส
+      </a>
+    </ion-col>
+    <ion-col>
+      <a [routerLink]="['/tabs/register']">
+        page register or signin
+      </a>
+    </ion-col>
+    <ion-col>
+      <a [routerLink]="['/tabs/reset-password']">
+        page reset password
+      </a>
+    </ion-col>
+    <ion-col>
+      <a [routerLink]="['/tabs/profile']">
+        page profile
+      </a>
+    </ion-col> -->
+  </ion-grid>
+</ion-content>

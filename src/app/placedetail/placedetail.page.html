@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" >     
+      <ion-back-button defaultHref="/tabs/home" color="light"></ion-back-button>
+    </ion-buttons>
+    <div class="hcs">
+      <img src="/assets/images/wellnessbar.svg" height="50" />
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="store">
+        <div *ngIf="store['fields']['feature_image']">
+            <img src= "{{  store['fields']['feature_image'] | imageServer }}" />
+        </div>
+    </div>
+  <ion-grid *ngIf="store">
+    <ion-row color="light">
+      <ion-col size="12">
+        <div class="txt-place-title">{{ store['fields']['name'] }}</div>
+      </ion-col>
+      <ion-col size="12">
+        <div class="txt-lead">เวลาเปิดทำงาน</div>
+        <div>{{ store['fields']['open_time'] }} - {{ store['fields']['close_time'] }} น.</div>
+      </ion-col>
+      <ion-col size="12">
+        <!-- {{ placelist?.acf.gmap.address }} -->
+        <!-- {{ placelist?.acf.gmap.lat }}
+        {{ placelist?.acf.gmap.lng }} -->
+        <div class="map-wrapper">
+          <div id="map_center">
+            <img src="/assets/icon/location-marker.png" />
+          </div>
+          <div #map id="map"></div>
+        </div>
+      </ion-col>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="4" class="ion-text-center">
+            <div (click)="callNow(store['fields']['tel'])">
+              <fa-icon [icon]="['fas', 'phone-square-alt']" class="button-blue" size="2x"></fa-icon>
+            </div>
+          </ion-col>  
+          <ion-col size="4" class="ion-text-center" (click)="openMapLink()" *ngIf="ios">
+            <!-- <div [innerHTML]="placelist?.acf.phone"></div>                         -->
+            <fa-icon [icon]="['fas', 'map-marked-alt']" class="button-blue" size="2x"></fa-icon>
+            <!-- <div style="font-size: 12px;" class="ion-align-items-center">iOS</div> -->
+          </ion-col> 
+          <ion-col size="4" class="ion-text-center" (click)="openMapLink()" *ngIf="android">
+            <!-- <div [innerHTML]="placelist?.acf.phone"></div>                         -->
+            <fa-icon [icon]="['fas', 'map-marked-alt']" class="button-blue" size="2x"></fa-icon>
+            <!-- <div style="font-size: 12px;" class="ion-align-items-center">Andriod</div> -->
+          </ion-col>                          
+          <ion-col size="4" class="ion-text-center">
+            <!-- <div [innerHTML]="placelist?.acf.email"></div>             -->
+            <div (click)="mailTo(store['fields']['email'])">
+              <fa-icon [icon]="['fas', 'envelope']" class="button-blue" size="2x"></fa-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-segment (ionChange)="segmentChanged($event)" value="list1">
+          <ion-segment-button value="list1">
+            <ion-label>
+              ที่อยู่
+            </ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="list2">
+            <ion-label>
+              รายละเอียด
+            </ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="list3">
+            <ion-label>
+              แกลลอรี่
+            </ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+        <ion-list *ngIf="segment === 'list1'">
+          <ion-col size="12">
+            <!-- <div class="txt-lead">ที่อยู่</div> -->
+            <p>
+            {{ store['fields']['address_text'] }}</p>
+          </ion-col>
+        </ion-list>
+
+        <ion-list *ngIf="segment === 'list2'">
+          <ion-col size="12">
+            <!-- <div class="txt-lead">ที่อยู่</div> -->
+            <div [innerHTML]="storeDetail['html']"></div>
+          </ion-col>
+        </ion-list>
+      </ion-col>
+      <ion-list *ngIf="segment === 'list3'">
+        <ion-row *ngIf="photos">
+          <ion-col size="6" *ngFor="let galimg of photos">            
+              <a href="{{ galimg['fields']['photo'] | imageServer }}" target="_blank">
+                  <img src="{{ galimg['fields']['photo'] | imageServer }}" imageViewer />   
+              </a>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

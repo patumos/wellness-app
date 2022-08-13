@@ -1,0 +1,24 @@
+<ion-tabs>
+  <!-- <ion-fab vertical="bottom" horizontal="center" translucent="true">
+    <ion-fab-button routerLink="nearme" routerDirection="forward">
+    <ion-icon name="navigate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" layout="icon-top">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>หน้าแรก</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="nearme" layout="icon-top">
+      <ion-icon name="location" color="danger"></ion-icon>
+      <ion-label color="danger">ใกล้ฉัน</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="openLogin(true)" layout="icon-top">
+      <ion-icon name="person"></ion-icon>
+      <ion-label >ฉัน</ion-label>
+    </ion-tab-button>
+    
+  </ion-tab-bar>
+</ion-tabs>

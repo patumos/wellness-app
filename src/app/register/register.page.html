@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" color="light">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="hcs">
+      <img src="/assets/images/wellnessbar.svg" height="50" />    
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="auth-form">
+  <div><img src="/assets/images/image-001.jpg"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/register-form']" expand="block" color="primary">ลงทะเบียนผู้ใช้งาน</ion-button>
+
+        <span class="divider line one-line">หรือ</span>
+
+        <span class="already">มีชื่อผู้ใช้งานแล้ว</span>
+
+        <ion-button [routerLink]="['/login']" expand="block" color="danger">เข้าสู่ระบบ</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

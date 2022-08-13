@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <div class="hcs">
+      <img src="assets/images/wellnessbar.svg" height="50" />    
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-slides pager="true" [options]="slideOptsOne">
+      
+      <ion-slide *ngFor="let p of storeSlide | slice:rndLower :rndUpper" [hidden]="p['fields']['feature_image'] == ''" [routerLink]="['/tabs/place/', p['pk']]">
+   <div *ngIf="p['fields']['feature_image'] != ''" class='slide'>
+              <ion-img [src]= "p['fields']['feature_image'] | imageServer " ></ion-img>
+          </div>
+      </ion-slide>
+  </ion-slides>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-toolbar class="search">
+          <ion-searchbar placeholder="ค้นหา" [(ngModel)]="searchText" (ionChange)="searchChange($event)" debounce="500"></ion-searchbar>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-start">
+      <!-- <ion-col size="6">
+        <div class="center catshow">
+          <fa-icon [icon]="['fas', 'utensils']" size="3x" class="red"></fa-icon>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class=" catshow center">
+          <fa-icon [icon]="['fas', 'spa']" size="3x"></fa-icon>        
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class=" catshow center">
+          <fa-icon [icon]="['fas', 'praying-hands']" size="3x"></fa-icon>          
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div class="catshow center">
+          <fa-icon [icon]="['fas', 'running']" size="3x"></fa-icon>
+        </div>
+      </ion-col> -->
+      <ion-col size="3">
+        <div class="center catshow">
+            <fa-icon [icon]="['fas', 'utensils']" size="2x" class="red" (click)="filterCat('ร้านอาหาร')"></fa-icon>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class=" catshow center">
+              <fa-icon [icon]="['fas', 'spa']" size="2x" class="red" (click)="filterCat('นวดไทย/สปา')"></fa-icon>
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class=" catshow center">
+              <fa-icon [icon]="['fas', 'praying-hands']" class="red" size="2x" (click)="filterCat('สถานที่พัฒนาจิตใจ')"></fa-icon >
+        </div>
+      </ion-col>
+      <ion-col size="3">
+        <div class="catshow center" >
+              <fa-icon [icon]="['fas', 'running']" class="red" (click)="filterCat('สถานที่ออกกำลังกาย')" size="2x"></fa-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <h2>
+          <span *ngIf='catName != "all"'>{{ catName }}</span>
+          <span *ngIf='prov != "all"'> จังหวัด {{ prov }}</span></h2>        
+      </ion-col>       
+    </ion-row>
+    <ion-row>
+        <ion-col *ngIf="stores && stores.length == 0" class='ion-text-center'><h2>ไม่มีผลการค้นหานี้</h2></ion-col>
+        <ion-col>
+        <ion-card *ngFor="let pldata of stores">
+            <div *ngIf="catName == 'all' || catName == pldata['fields']['store_cat']">
+                <div *ngIf="prov == 'all' || pldata['fields']['province'] == prov">
+                <div *ngIf="pldata['fields']['feature_image']">
+                  <a [routerLink]="['/tabs/place/', pldata['pk']]">
+                    <img src= "{{  pldata['fields']['feature_image'] | imageServer }}" />
+                    </a>
+                </div>
+                <ion-card-header>
+                    <a [routerLink]="['/tabs/place/', pldata['pk']]">
+                        <!--
+                            <ion-card-title [innerHTML]="pldata.title.rendered"></ion-card-title> -->
+                            <ion-card-title>{{ pldata['fields']['name'] }}</ion-card-title>
+                    </a>
+                    <a (click)="changeProvince(pldata['fields']['province'])">
+                        <!--
+                            <span [innerHTML]="pldata._embedded['wp:term'][1][0].name"></span> -->
+                            <span>{{ pldata['fields']['province'] }}</span>
+
+                    </a> |                   
+                    <a (click)="filterCat(pldata['fields']['store_cat'])">
+                        <span>{{ pldata['fields']['store_cat'] }}</span>
+                    </a>
+                </ion-card-header>
+                </div>
+            </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

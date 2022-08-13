@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" color="light">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <div class="hcs">
+      <img src="/assets/images/wellnessbar.svg" height="50" />    
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="/assets/images/image-010.jpg">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+            <div class="txt-place-title">{{ id }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-toolbar class="search">
+            <ion-searchbar placeholder="ค้นหา"></ion-searchbar>
+          </ion-toolbar>
+        </ion-col>
+      </ion-row>      
+      <ion-card *ngFor="let pcl of placecatlist">
+        <div *ngIf="$any(pcl).better_featured_image != null">
+          <img src="{{$any(pcl).better_featured_image.source_url}}" alt="">
+        </div>
+        <div *ngIf="$any(pcl).better_featured_image == null">
+          <img src="/assets/images/temp.png" />
+        </div>
+        <ion-card-header>
+           <a [routerLink]="['/tabs/place/', pcl.id]"><ion-card-title [innerHTML]="pcl.title.rendered"></ion-card-title></a>
+        </ion-card-header>
+      </ion-card>
+    </ion-grid>
+</ion-content>
